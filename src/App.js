@@ -1,20 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import Navbar from './components/Navbar';
-import ItemListContainer from './components/ItemListContainer';
-import ItemCount from './components/ItemCount';
+import Navbar from './components/Navbar/Navbar';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ItemCount from './components/Itemcount/ItemCount';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
-function App() {
-  const onAdd = () => (console.log('click'));
-  
-  return (
-    <div className="App"> 
-      <Navbar/>
-      <ItemListContainer Saludo="Bienvenido a nuetra Tienda"/>
-      <ItemCount stock={5} initial={0} onAdd={onAdd}/>
-    </div>
+const App = () => {
+  const onAdd = () => {}
+    return (
+    <BrowserRouter>
+          <Navbar/>
+      <Routes>
+          <Route path='/'element={<ItemListContainer Saludo="Bienvenido a nuetra Tienda"/>}/>
+        <Route path='/categorias/:categoria'element={<ItemListContainer Saludo="Bienvenido a nuetra Tienda"/>}/>
+        <Route path='/item/:id'element={<ItemCount stock={5} initial={1} onAdd={onAdd}/>}/>
+      </Routes> 
+    </BrowserRouter>
   );
-}
-
-export default App;
+};
+export default App
